@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Compile .proto files",
+        "type": "shell",
+        "command": "protoc",
+        "args": [
+          "--proto_path=.",
+          "--js_out=import_style=commonjs,binary:.",
+          "--grpc-web_out=import_style=commonjs,mode=grpcwebtext:.",
+          "${file}"
+        ],
+        "problemMatcher": [],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+  

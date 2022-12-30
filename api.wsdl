@@ -1,0 +1,59 @@
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://localhost:8080/wsdl"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             targetNamespace="http://localhost:8080/wsdl">
+
+<wsdl:types>
+    <xsd:schema targetNamespace="http://localhost:8080/wsdl"
+                xmlns:tns="http://localhost:8080/wsdl">
+      <xsd:element name="GetRecordById" type="tns:GetRecordById"/>
+      <xsd:complexType name="GetRecordById">
+        <xsd:sequence>
+          <xsd:element name="id" type="xsd:integer"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="GetRecordByIdResponse" type="tns:GetRecordByIdResponse"/>
+      <xsd:complexType name="GetRecordByIdResponse">
+        <xsd:sequence>
+          
+          <xsd:element name="name" type="xsd:string"/>
+          
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+
+
+  <!-- Mesajlar -->
+  <message name="GetRecordByIdRequest">
+    <part name="id" type="xsd:integer"/>
+  </message>
+  <message name="GetRecordByIdResponse">
+    <part name="record" type="xsd:string"/>
+  </message>
+  <!-- Port tipi -->
+  <portType name="api">
+    <operation name="GetRecordById">
+      <input message="tns:GetRecordByIdRequest"/>
+      <output message="tns:GetRecordByIdResponse"/>
+    </operation>
+  </portType>
+  <!-- Bağlama -->
+  <binding name="apiSoap" type="tns:api">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetRecordById">
+      <soap:operation soapAction="http://localhost:8080/api/GetRecordById"/>
+      <input>
+        <soap:body use="encoded" namespace="http://localhost:8080/wsdl"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="http://localhost:8080/wsdl"/>
+      </output>
+    </operation>
+  </binding>
+  <!-- Hizmet -->
+  
+</definitions>
+

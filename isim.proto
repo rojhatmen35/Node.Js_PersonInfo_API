@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service Isim {
+  rpc Tamİsim (Tamİsimİstek) returns (TamİsimYanıt) {}
+}
+
+message Tamİsimİstek {
+  string isim = 1;
+  string soyisim = 2;
+}
+
+message TamİsimYanıt {
+  string tam_ad = 1;
+}
